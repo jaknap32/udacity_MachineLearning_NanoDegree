@@ -19726,11 +19726,16 @@ Name: Explained Variance, dtype: float64</pre>
 <p><strong>Answer:</strong></p>
 <ul>
 <li>72.52% of the variance is explained by the first two principal components</li>
-<li>92.79% of the variance is explained by the first four principal components</li>
-<li>The first component seems to be highly dependent on grocery, milk and detergent_papers. So the Customers having high PC1 component will have high buying for grocery, milk and detergent_papers, these could be the group of retail customers. These spendings are actualy correlated if we see the graphs above!</li>
-<li>The seconds PC is opposite of PC1 and depends heavily on the other Frozen, Fresh and Deli. So the Customers having high PC2 component will have high buying for Frozen, Fresh and Deli, these could be restaurant customers, serving food each day. This is I believe because the principal components are infact orthogonal to each other</li>
-<li>The third PC is heavy on Milk, Frozen and Deli!, So customers that have a high PC3 value will be high buyers of milk, frozen and deli, could be bakeries selling dairy products and frozen foods with desserts. </li>
-<li>The fourth PC is again heavy on Deli but this PC is also dependent on Fresh and no froze. So customers having a high PC4 will have high purchase of Deli, could be that these are small sweet shops. This component is similar to the third where it has anti-correlation in Frozen and Delicatessen!</li>
+<li><p>92.79% of the variance is explained by the first four principal components</p>
+</li>
+<li><p>The first component seems to be highly dependent on grocery, milk and detergent_papers. So the Customers having high PC1 component will have high buying for grocery, milk and detergent_papers, these could be the group of retail customers. These spendings are actualy correlated if we see the graphs above!</p>
+</li>
+<li><p>The seconds PC is opposite of PC1 and depends heavily on the other Frozen, Fresh and Deli. So the Customers having high PC2 component will have high buying for Frozen, Fresh and Deli, these could be restaurant customers, serving food each day. This is I believe because the principal components are infact orthogonal to each other</p>
+</li>
+<li><p>The third PC has positive weight on Milk, Frozen and Deli! and negative weight on Fresh, Grocery and DetergentPapers. Fresh is highly negative and Deli is highly positive, this anti-correllation tells us that a customer having hich value of PC3 will buy lost of Deli, moderate amount of frozen and milk and pretty less amount of Fresh produce and vice versa, could be bakeries selling dairy products and frozen foods with desserts.</p>
+</li>
+<li><p>The fourth PC is again heavy on Deli but this PC is also dependent on Fresh and no froze. Here again we see a heavy anti-correlation between Deli and Frozen with Deli being on the positive side and Frozen on the neggative. This anti-correlation hints us that Pei So customers having a high PC4 will have high purchase of Deli and meagre purchase of Frozen Foods and vixe versa, could be that these are small sweet shops. This component is similar to the third where it has anti-correlation in Frozen and Delicatessen!</p>
+</li>
 </ul>
 
 </div>
