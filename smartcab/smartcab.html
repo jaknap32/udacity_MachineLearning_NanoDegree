@@ -16595,35 +16595,32 @@ AAAAAElFTkSuQmCC
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ul>
-<li><p>Some of the key points in the optimal policy and their translation to out model parameters should be like -</p>
+<li>Some of the key points in the optimal policy and their translation to out model parameters should be like -<ul>
+<li>No movement when the light is red. </li>
+<li>Forward movement when light is green, oncoming is None</li>
+<li>No right movement when light is green but oncoming is forward or left!<ul>
+<li>&lt;img src="images1/bad_right1.PNG",width=360,height=360&gt;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <ul>
-<li>No movement when oncoming traffic is coming fwd<ul>
-<li>{f, r/g, r/l/f, f} <code>=&gt;</code> high -ve Q for f    <em>format-{waypoint:r/l/f/N, light:r/g, left:r/l/f/N, oncoming:r/l/f/N}</em></li>
+<li>Following are some outputs from the model</li>
 </ul>
-</li>
-<li>No movement when the light is red<ul>
-<li>{f, r, r/l/f, f} <code>=&gt;</code> high -ve Q for f</li>
-</ul>
-</li>
-<li>Forward movement when light is green, oncoming is None<ul>
-<li>{f, g, N, N} <code>=&gt;</code> high +ve Q for f</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Following are some outputs from the model</p>
-</li>
+<p><code>output struct - (waypoint, inputs['light'], inputs['left'], inputs['oncoming'])</code></p>
+<ul>
 <li><p>Example 1</p>
 
-<pre><code>  ('right', 'green', 'left', 'right')
-   -- forward : 0.07
-   -- right : 0.00
-   -- None : -0.03
-   -- left : -0.06
+<pre><code>  ('right', 'red', 'right', None)
+   -- forward : -0.54
+   -- right : 0.01
+   -- None : 0.14
+   -- left : -0.66
 
 </code></pre>
 <ul>
-<li>We can see here that the modle has correctly learned to move fwd when the light is green!</li>
+<li>Correctly learnt that right turn is allowed in a red signal, when there's not obstruction</li>
 </ul>
 </li>
 </ul>
@@ -16637,47 +16634,35 @@ AAAAAElFTkSuQmCC
    -- left : -3.77
 </code></pre>
 <ul>
-<li>Hevay Neagtive weight when the light is red!</li>
+<li>Hevay Neagtive weight for left and forward when the light is red!</li>
 </ul>
 </li>
 </ul>
 <ul>
-<li><p>Example 3</p>
+<li><p>Wrong Exmaple 1</p>
 
-<pre><code>  ('right', 'green', 'right', 'forward')
-   -- forward : 0.00
-   -- right : 0.10
-   -- None : -0.07
+<pre><code>  ('right', 'green', 'left', 'right')
+   -- forward : 0.07
+   -- right : 0.00
+   -- None : -0.03
    -- left : -0.06
 </code></pre>
 <ul>
-<li>No forward movement when oncoming traffic is forward!, even with the lights green!</li>
+<li>The agent could have taken right as there was no obstruction but did not?!</li>
 </ul>
 </li>
-<li><p>Example 4</p>
+</ul>
+<ul>
+<li><p>Wrong Example 2</p>
 
 <pre><code>  ('forward', 'green', 'left', None)
    -- forward : 0.12
    -- right : 0.05
    -- None : -0.39
-   -- left : 0.56
+   -- left : 0.56    
 </code></pre>
 <ul>
-<li>Since there is no oncoming traffic forward movement should have been higher, but again these rules would be decided based on the destionation and many times the destination could've been on the left so this rule has been learnt!</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>Wrong Exmaple</p>
-
-<pre><code>  ('left', 'green', 'forward', 'forward')
-   -- forward : 0.12
-   -- right : 0.01
-   -- None : -0.10
-   -- left : -0.24
-</code></pre>
-<ul>
-<li>Since the oncoming crowd is coming forwadr, the agent should not have moved forward!</li>
+<li>The agent could have gone forward as ther was no obstruction bu instead went left!</li>
 </ul>
 </li>
 </ul>
